@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NIPSCERN Director</title>
+  <title>Torus: NIPSCERN's Director</title>
   <link rel="stylesheet" href="css/styles.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- FontAwesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
 </head>
 <body>
   <header>
-    <h1>NIPSCERN Director</h1>
+    <h1>Torus: NIPSCERN's Director</h1>
   </header>
   
   <nav>
@@ -31,55 +32,85 @@
         <img src="icons/icon_firefox.svg" alt="Firefox Icon" class="programIcon">
         <div class="programInfo">
           <h3>Firefox</h3>
-          <p>A fast, secure, and free web browser built for the modern web.</p>
+          <p>A fast, secure, and free web browser built for the modern web.</p><br>
           <button id="download-firefox" class="downloadBtn">Download Firefox</button>
           <div class="progress-container" id="progress-firefox" style="display: none;">
             <progress id="progress-bar-firefox" value="0" max="100"></progress>
             <span id="speed-firefox">0 Mbps</span>
-            <button id="cancel-firefox" class="cancelBtn" style="display: none;">Cancel</button>
+            <button id="pause-firefox" class="pauseBtn" style="display: none;">Pause</button>
+            <button id="cancel-firefox" class="cancelBtn">Cancel</button>
+            <p id="status-firefox"></p>
           </div>
         </div>
       </div>
+      
       <div class="card">
         <img src="icons/icon_vscode.svg" alt="VSCode Icon" class="programIcon">
         <div class="programInfo">
           <h3>Visual Studio Code</h3>
-          <p>Code editor redefined and optimized for building and debugging modern web and cloud applications.</p>
+          <p>Code editor redefined and optimized for building and debugging modern web and cloud applications.</p><br>
           <button id="download-vscode" class="downloadBtn">Download VSCode</button>
           <div class="progress-container" id="progress-vscode" style="display: none;">
             <progress id="progress-bar-vscode" value="0" max="100"></progress>
             <span id="speed-vscode">0 Mbps</span>
-            <button id="cancel-vscode" class="cancelBtn" style="display: none;">Cancel</button>
+            <button id="pause-vscode" class="pauseBtn" style="display: none;">Pause</button>
+            <button id="cancel-vscode" class="cancelBtn">Cancel</button>
+            <p id="status-vscode"></p>
           </div>
         </div>
       </div>
+      
       <div class="card">
         <img src="icons/icon_github.svg" alt="GitHub Desktop Icon" class="programIcon">
         <div class="programInfo">
           <h3>GitHub Desktop</h3>
-          <p>Focus on what matters instead of fighting with Git. Whether you're new to Git or a seasoned user, GitHub Desktop simplifies your development workflow.</p>
+          <p>Focus on what matters instead of fighting with Git. Whether you're new to Git or a seasoned user, GitHub Desktop simplifies your development workflow.</p><br>
           <button id="download-github" class="downloadBtn">Download GitHub</button>
           <div class="progress-container" id="progress-github" style="display: none;">
             <progress id="progress-bar-github" value="0" max="100"></progress>
             <span id="speed-github">0 Mbps</span>
-            <button id="cancel-github" class="cancelBtn" style="display: none;">Cancel</button>
+            <button id="pause-github" class="pauseBtn" style="display: none;">Pause</button>
+            <button id="cancel-github" class="cancelBtn">Cancel</button>
+            <p id="status-github"></p>
           </div>
         </div>
       </div>
+      
       <div class="card">
-        <img src="icons/Untitled-8.svg" alt="Quartus Icon" class="programIcon">
+        <img src="icons/Quartus-Prime-.png" alt="Quartus Icon" class="programIcon">
         <div class="programInfo">
           <h3>Intel Quartus</h3>
-          <p>A fast, secure, and free web browser built for the modern web.</p>
+          <p>A fast, secure, and free web browser built for the modern web.</p><br>
           <button id="download-quartus" class="downloadBtn">Download Quartus</button>
           <div class="progress-container" id="progress-quartus" style="display: none;">
             <progress id="progress-bar-quartus" value="0" max="100"></progress>
             <span id="speed-quartus">0 Mbps</span>
-            <button id="cancel-quartus" class="cancelBtn" style="display: none;">Cancel</button>
+            <button id="pause-quartus" class="pauseBtn" style="display: none;">Pause</button>
+            <button id="cancel-quartus" class="cancelBtn">Cancel</button>
+            <p id="status-quartus"></p>
           </div>
         </div>
       </div>
+
+      <div class="card">
+        <img src="icons/icon_sapho.ico" alt="SAPHO Icon" class="programIcon">
+        <div class="programInfo">
+          <h3>SAPHO</h3>
+          <p>SAPHO is a platform for building enterprise applications with micro apps that aggregate data from multiple sources into a unified interface.</p><br>
+          <button id="download-sapho" class="downloadBtn">Download SAPHO</button>
+          <!-- Progresso do SAPHO -->
+          <div class="progress-container" id="progress-sapho" style="display: none;">
+            <progress id="progress-bar-sapho" value="0" max="100"></progress>
+            <span id="speed-sapho">0 Mbps</span>
+            <button id="pause-sapho" class="pauseBtn" style="display: none;">Pause</button>
+            <button id="cancel-sapho" class="cancelBtn">Cancel</button>
+            <p id="status-sapho"></p>
+          </div>
+        </div>
+      </div>
+      
     </section>
+    
     <section id="newsSection">
       <h2>News</h2>
       <div class="newsContainer">
@@ -95,7 +126,23 @@
     <button id="aboutBtn">About</button>
     <button id="settingsBtn">Settings</button>
   </footer>
+
+<!-- No final do seu body -->
+<div class="aboutMenu">
+  <div class="aboutMenu-content">
+    <span class="close">&times;</span>
+    <h2>About Torus - NIPSCERN Director</h2>
+    <p>
+      Welcome to Torus - NIPSCERN Director, a download manager for NIPSCERN laboratory.
+      This application helps manage installed and available programs efficiently.
+    </p>
+    <p>
+      For more information, please contact us at support@nipscern.edu.
+    </p>
+  </div>
+</div>
   
   <script src="js/renderer.js"></script>
+  <script src="js/about.js"></script>
 </body>
 </html>
