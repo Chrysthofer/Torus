@@ -1,0 +1,27 @@
+{
+  "name": "nipscern-director",
+  "version": "1.0.0",
+  "description": "SAPHO Development Environment",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^31.0.1",
+    "electron-builder": "^24.13.3"
+  },
+  "icon": "./icons/icon_peituda.png",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "electron-dl": "^4.0.0",
+    "electron-download-manager": "^2.1.2",
+    "electron-is-dev": "^3.0.1",
+    "express": "^4.19.2",
+    "express-csp-header": "^5.2.1",
+    "node-fetch": "^2.7.0",
+    "progress-string": "^1.2.2",
+    "request": "^2.88.2"
+  }
+}

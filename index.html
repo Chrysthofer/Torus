@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NIPSCERN Director</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- FontAwesome -->
+</head>
+<body>
+  <header>
+    <h1>NIPSCERN Director</h1>
+  </header>
+  
+  <nav>
+    <button id="installedBtn" class="active">Installed</button>
+    <button id="availableBtn">Available</button>
+  </nav>
+  <main>
+    <section id="installedSection">
+      <h2>Installed Programs</h2>
+      <ul id="installedList">
+        <!-- Lista de programas instalados -->
+      </ul>
+    </section>
+    
+    <section id="availableSection" style="display: none;">
+      <h2>Available Programs</h2>
+      <div class="card">
+        <img src="icons/icon_firefox.svg" alt="Firefox Icon" class="programIcon">
+        <div class="programInfo">
+          <h3>Firefox</h3>
+          <p>A fast, secure, and free web browser built for the modern web.</p>
+          <button id="download-firefox" class="downloadBtn">Download Firefox</button>
+          <div class="progress-container" id="progress-firefox" style="display: none;">
+            <progress id="progress-bar-firefox" value="0" max="100"></progress>
+            <span id="speed-firefox">0 Mbps</span>
+            <button id="cancel-firefox" class="cancelBtn" style="display: none;">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="icons/icon_vscode.svg" alt="VSCode Icon" class="programIcon">
+        <div class="programInfo">
+          <h3>Visual Studio Code</h3>
+          <p>Code editor redefined and optimized for building and debugging modern web and cloud applications.</p>
+          <button id="download-vscode" class="downloadBtn">Download VSCode</button>
+          <div class="progress-container" id="progress-vscode" style="display: none;">
+            <progress id="progress-bar-vscode" value="0" max="100"></progress>
+            <span id="speed-vscode">0 Mbps</span>
+            <button id="cancel-vscode" class="cancelBtn" style="display: none;">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="icons/icon_github.svg" alt="GitHub Desktop Icon" class="programIcon">
+        <div class="programInfo">
+          <h3>GitHub Desktop</h3>
+          <p>Focus on what matters instead of fighting with Git. Whether you're new to Git or a seasoned user, GitHub Desktop simplifies your development workflow.</p>
+          <button id="download-github" class="downloadBtn">Download GitHub</button>
+          <div class="progress-container" id="progress-github" style="display: none;">
+            <progress id="progress-bar-github" value="0" max="100"></progress>
+            <span id="speed-github">0 Mbps</span>
+            <button id="cancel-github" class="cancelBtn" style="display: none;">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="icons/Untitled-8.svg" alt="Quartus Icon" class="programIcon">
+        <div class="programInfo">
+          <h3>Intel Quartus</h3>
+          <p>A fast, secure, and free web browser built for the modern web.</p>
+          <button id="download-quartus" class="downloadBtn">Download Quartus</button>
+          <div class="progress-container" id="progress-quartus" style="display: none;">
+            <progress id="progress-bar-quartus" value="0" max="100"></progress>
+            <span id="speed-quartus">0 Mbps</span>
+            <button id="cancel-quartus" class="cancelBtn" style="display: none;">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="newsSection">
+      <h2>News</h2>
+      <div class="newsContainer">
+        <div class="newsItem">
+          <h3>New Version Released!</h3>
+          <p>Check out the latest updates and features in NIPSCERN Director.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <button id="aboutBtn">About</button>
+    <button id="settingsBtn">Settings</button>
+  </footer>
+  
+  <script src="js/renderer.js"></script>
+</body>
+</html>

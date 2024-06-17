@@ -1,0 +1,262 @@
+/* Reset e estilos gerais */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #121212; /* Fundo preto mais suave */
+  color: #D1C4E9; /* Roxo claro */
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #1C1B29; /* Roxo escuro */
+  text-align: center;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+  font-size: 2.5em;
+  color: #D1C4E9; /* Roxo claro */
+}
+
+nav {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+nav button {
+  background-color: transparent;
+  color: #D1C4E9; /* Roxo claro */
+  border: 1px solid #D1C4E9;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1em;
+  margin: 0 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav button.active {
+  background-color: #D1C4E9; /* Roxo claro */
+  color: #121212; /* Preto suave */
+}
+
+nav button:hover {
+  background-color: #D1C4E9; /* Roxo claro */
+  color: #121212; /* Preto suave */
+}
+
+main {
+  display: flex;
+  flex: 1;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+section {
+  flex: 1;
+  background-color: #1C1B29; /* Roxo escuro */
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 1rem;
+  color: #D1C4E9; /* Roxo claro */
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  font-size: 1.1em;
+  margin-bottom: 0.5rem;
+}
+
+.card {
+  background-color: #2C2B3E; /* Roxo médio */
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.programIcon {
+  width: 50px;
+  height: 50px;
+  margin-right: 1rem;
+}
+
+.programInfo {
+  flex: 1;
+}
+
+.card h3 {
+  font-size: 1.5em;
+  color: #D1C4E9; /* Roxo claro */
+}
+
+.card p {
+  margin-top: 0.5rem;
+  color: #B39DDB; /* Roxo mais claro */
+}
+
+.downloadBtn {
+  background-color: #D1C4E9; /* Roxo claro */
+  color: #121212; /* Preto suave */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.downloadBtn:hover {
+  background-color: #B39DDB; /* Roxo mais claro */
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+}
+
+/* Estilizando a barra de progresso */
+progress::-webkit-progress-bar {
+  background-color: #2C2B3E; /* Roxo médio */
+  border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #BA55D3; /* Roxo neon */
+  border-radius: 5px;
+}
+
+progress::-moz-progress-bar {
+  background-color: #BA55D3; /* Roxo neon */
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #1C1B29; /* Roxo escuro */
+  text-align: center;
+  padding: 1rem 0;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+footer button {
+  background-color: transparent;
+  color: #D1C4E9; /* Roxo claro */
+  border: 1px solid #D1C4E9;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1em;
+  margin: 0 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+footer button:hover {
+  background-color: #D1C4E9; /* Roxo claro */
+  color: #121212; /* Preto suave */
+}
+
+.cancelBtn {
+  margin-left: 0.5rem;
+  background-color: #FF6347; /* Tomate */
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancelBtn:hover {
+  background-color: #FF4500; /* Vermelho escuro */
+}
+
+/* Custom scrollbar for WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+}
+
+::-webkit-scrollbar-track {
+  background: #1C1B29; /* Cor do trilho da barra de rolagem */
+  border-radius: 10px; /* Bordas arredondadas do trilho */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #7B68EE; /* Cor da barra de rolagem (roxo suave) */
+  border-radius: 10px; /* Bordas arredondadas da barra */
+  border: 2px solid #1C1B29; /* Espaço entre a barra e o trilho */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #6A5ACD; /* Cor da barra ao passar o mouse (roxo mais escuro) */
+}
+
+/* Custom scrollbar for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #7B68EE #1C1B29; /* Cor da barra de rolagem (roxo suave) e do trilho */
+}
+
+/* Custom scrollbar for IE and Edge */
+* {
+  scrollbar-face-color: #7B68EE; /* Cor da barra de rolagem (roxo suave) */
+  scrollbar-track-color: #1C1B29; /* Cor do trilho */
+}
+
+/* Estilos para os botões */
+.title-bar {
+  background-color: #2e2e2e;
+  -webkit-app-region: drag; /* Permite arrastar a janela */
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.title-bar .buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.title-bar .buttons button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+}
