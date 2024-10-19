@@ -1,4 +1,4 @@
-let installedPrograms = ['VSCode', 'Chrome'];
+let installedPrograms = [];
 
 function showInstalledPrograms() {
   const installedList = document.getElementById('installedList');
@@ -37,6 +37,11 @@ document.addEventListener('DOMContentLoaded', function () {
   showInstalledPrograms();
 });
 
+window.electron.ipcRenderer.on('installed-programs', (event, programs) => {
+  installedPrograms = programs;
+  showInstalledPrograms();
+});
+
 // Variáveis globais para controlar o estado do download
 let downloadControllers = {
   firefox: null,
@@ -46,54 +51,52 @@ let downloadControllers = {
   sapho: null,
 };
 
-const { ipcRenderer } = require('electron');
-
 async function downloadFile(url, fileName, progressBar, speedIndicator, cancelBtn, pauseBtn, statusText) {
   const progressContainer = progressBar.parentNode;
   progressContainer.style.display = 'block';
   cancelBtn.disabled = false;
+  pauseBtn.style.display = 'inline-block';
 
-  // Pausar o download
   let paused = false;
+
   pauseBtn.addEventListener('click', () => {
     if (!paused) {
-      ipcRenderer.send('pause-download', fileName);
+      window.electron.ipcRenderer.send('pause-download', fileName);
       paused = true;
       pauseBtn.textContent = 'Resume';
     } else {
-      ipcRenderer.send('resume-download', fileName);
+      window.electron.ipcRenderer.send('resume-download', fileName);
       paused = false;
       pauseBtn.textContent = 'Pause';
     }
   });
 
   cancelBtn.addEventListener('click', () => {
-    ipcRenderer.send('cancel-download', fileName);
+    window.electron.ipcRenderer.send('cancel-download', fileName);
     progressContainer.style.display = 'none';
     statusText.textContent = 'Download canceled';
   });
 
-  ipcRenderer.send('download-file', { url, filename: fileName });
+  window.electron.ipcRenderer.send('download-file', { url, filename: fileName });
 
-  ipcRenderer.on('download-progress', (event, { file, progress }) => {
+  window.electron.ipcRenderer.on('download-progress', (event, { file, progress }) => {
     if (file === fileName) {
       const percentComplete = Math.round(progress.percent * 100);
       progressBar.value = percentComplete;
-
       const speedMbps = (progress.bytesPerSecond * 8) / 1000000;
       speedIndicator.textContent = `${speedMbps.toFixed(2)} Mbps`;
       statusText.textContent = `Downloading... ${percentComplete}%`;
     }
   });
 
-  ipcRenderer.once('download-complete', (event, { file, message }) => {
+  window.electron.ipcRenderer.once('download-complete', (event, { file, message }) => {
     if (file === fileName) {
       progressContainer.style.display = 'none';
       statusText.textContent = message;
     }
   });
 
-  ipcRenderer.once('download-error', (event, { file, message }) => {
+  window.electron.ipcRenderer.once('download-error', (event, { file, message }) => {
     if (file === fileName) {
       progressContainer.style.display = 'none';
       statusText.textContent = message;
@@ -101,97 +104,27 @@ async function downloadFile(url, fileName, progressBar, speedIndicator, cancelBt
   });
 }
 
-document.getElementById('download-firefox').addEventListener('click', () => {
-  const progressBar = document.getElementById('progress-bar-firefox');
-  const speedIndicator = document.getElementById('speed-firefox');
-  const cancelBtn = document.getElementById('cancel-firefox');
-  const pauseBtn = document.getElementById('pause-firefox');
-  const statusText = document.getElementById('status-firefox');
-  const progressContainer = document.getElementById('progress-firefox');
+function setupDownloadButton(buttonId, url, fileName, progressBarId, speedIndicatorId, cancelBtnId, pauseBtnId, statusTextId) {
+  document.getElementById(buttonId).addEventListener('click', () => {
+    const progressBar = document.getElementById(progressBarId);
+    const speedIndicator = document.getElementById(speedIndicatorId);
+    const cancelBtn = document.getElementById(cancelBtnId);
+    const pauseBtn = document.getElementById(pauseBtnId);
+    const statusText = document.getElementById(statusTextId);
+    const progressContainer = document.getElementById(`${progressBarId.replace('-bar', '')}`);
 
-  progressContainer.style.display = 'none';
-  statusText.textContent = '';
-  cancelBtn.disabled = true;
-  pauseBtn.style.display = 'inline-block';
-  pauseBtn.textContent = 'Pause';
+    progressContainer.style.display = 'block';
+    statusText.textContent = '';
+    cancelBtn.disabled = true;
+    pauseBtn.style.display = 'inline-block';
+    pauseBtn.textContent = 'Pause';
 
-  downloadFile('https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-GB', 'firefox.exe', progressBar, speedIndicator, cancelBtn, pauseBtn, statusText);
-});
+    downloadFile(url, fileName, progressBar, speedIndicator, cancelBtn, pauseBtn, statusText);
+  });
+}
 
-document.getElementById('download-vscode').addEventListener('click', () => {
-  const progressBar = document.getElementById('progress-bar-vscode');
-  const speedIndicator = document.getElementById('speed-vscode');
-  const cancelBtn = document.getElementById('cancel-vscode');
-  const pauseBtn = document.getElementById('pause-vscode');
-  const statusText = document.getElementById('status-vscode');
-  const progressContainer = document.getElementById('progress-vscode');
-
-  progressContainer.style.display = 'none';
-  statusText.textContent = '';
-  cancelBtn.disabled = true;
-  pauseBtn.style.display = 'inline-block';
-  pauseBtn.textContent = 'Pause';
-
-  downloadFile('https://code.visualstudio.com/docs/?dv=win64user', 'vscode.exe', progressBar, speedIndicator, cancelBtn, pauseBtn, statusText);
-});
-
-// Adicione os outros downloads aqui seguindo o mesmo padrão
-
-document.getElementById('download-github').addEventListener('click', () => {
-  const progressBar = document.getElementById('progress-bar-github');
-  const speedIndicator = document.getElementById('speed-github');
-  const cancelBtn = document.getElementById('cancel-github');
-  const pauseBtn = document.getElementById('pause-github');
-  const statusText = document.getElementById('status-github');
-  const progressContainer = document.getElementById('progress-github');
-
-  // Resetar o estado do download
-  progressContainer.style.display = 'none';
-  statusText.textContent = '';
-  cancelBtn.disabled = true;
-  pauseBtn.style.display = 'inline-block';
-  pauseBtn.textContent = 'Pause';
-
-  // Iniciar o download
-  downloadFile('https://central.github.com/deployments/desktop/desktop/latest/win32', 'github.exe', progressBar, speedIndicator, cancelBtn, pauseBtn, statusText);
-});
-
-
-document.getElementById('download-quartus').addEventListener('click', () => {
-  const progressBar = document.getElementById('progress-bar-quartus');
-  const speedIndicator = document.getElementById('speed-quartus');
-  const cancelBtn = document.getElementById('cancel-quartus');
-  const pauseBtn = document.getElementById('pause-quartus');
-  const statusText = document.getElementById('status-quartus');
-  const progressContainer = document.getElementById('progress-quartus');
-
-  // Resetar o estado do download
-  progressContainer.style.display = 'none';
-  statusText.textContent = '';
-  cancelBtn.disabled = true;
-  pauseBtn.style.display = 'inline-block';
-  pauseBtn.textContent = 'Pause';
-
-  // Iniciar o download
-  downloadFile('https://cdrdv2.intel.com/v1/dl/getContent/773998/774011?filename=QuartusLiteSetup-22.1std.1.917-windows.exe', 'quartus.exe', progressBar, speedIndicator, cancelBtn, pauseBtn, statusText);
-});
-
-
-document.getElementById('download-sapho').addEventListener('click', () => {
-  const progressBar = document.getElementById('progress-bar-sapho');
-  const speedIndicator = document.getElementById('speed-sapho');
-  const cancelBtn = document.getElementById('cancel-sapho');
-  const pauseBtn = document.getElementById('pause-sapho');
-  const statusText = document.getElementById('status-sapho');
-  const progressContainer = document.getElementById('progress-sapho');
-
-  // Resetar o estado do download
-  progressContainer.style.display = 'none';
-  statusText.textContent = '';
-  cancelBtn.disabled = true;
-  pauseBtn.style.display = 'inline-block';
-  pauseBtn.textContent = 'Pause';
-
-  // Iniciar o download
-  downloadFile('https://github.com/nipscernlab/sapho/blob/main/Sapho_atual/Setup/inno/SAPHO.exe?raw=true', 'sapho.exe', progressBar, speedIndicator, cancelBtn, pauseBtn, statusText);
-});
+setupDownloadButton('download-firefox', 'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-GB', 'firefox.exe', 'progress-bar-firefox', 'speed-firefox', 'cancel-firefox', 'pause-firefox', 'status-firefox');
+setupDownloadButton('download-vscode', 'https://code.visualstudio.com/docs/?dv=win64user', 'vscode.exe', 'progress-bar-vscode', 'speed-vscode', 'cancel-vscode', 'pause-vscode', 'status-vscode');
+setupDownloadButton('download-github', 'https://central.github.com/deployments/desktop/desktop/latest/win32', 'github.exe', 'progress-bar-github', 'speed-github', 'cancel-github', 'pause-github', 'status-github');
+setupDownloadButton('download-quartus', 'https://cdrdv2.intel.com/v1/dl/getContent/773998/774011?filename=QuartusLiteSetup-22.1std.1.917-windows.exe', 'quartus.exe', 'progress-bar-quartus', 'speed-quartus', 'cancel-quartus', 'pause-quartus', 'status-quartus');
+setupDownloadButton('download-sapho', 'https://github.com/nipscernlab/sapho/blob/main/Sapho_atual/Setup/inno/SAPHO.exe?raw=true', 'sapho.exe', 'progress-bar-sapho', 'speed-sapho', 'cancel-sapho', 'pause-sapho', 'status-sapho');

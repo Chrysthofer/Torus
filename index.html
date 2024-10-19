@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <title>Torus: NIPSCERN's Director</title>
   <link rel="stylesheet" href="css/styles.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
 </head>
 <body>
@@ -21,18 +20,17 @@
   <main>
     <section id="installedSection">
       <h2>Installed Programs</h2>
-      <ul id="installedList">
-        <!-- Lista de programas instalados -->
-      </ul>
+      <ul id="installedList"></ul>
     </section>
     
     <section id="availableSection" style="display: none;">
       <h2>Available Programs</h2>
+      <button id="control-all-downloads">Control All Downloads</button>
       <div class="card">
         <img src="icons/icon_firefox.svg" alt="Firefox Icon" class="programIcon">
         <div class="programInfo">
           <h3>Firefox</h3>
-          <p>A fast, secure, and free web browser built for the modern web.</p><br>
+          <p>A fast, secure, and free web browser built for the modern web.</p>
           <button id="download-firefox" class="downloadBtn">Download Firefox</button>
           <div class="progress-container" id="progress-firefox" style="display: none;">
             <progress id="progress-bar-firefox" value="0" max="100"></progress>
@@ -48,7 +46,7 @@
         <img src="icons/icon_vscode.svg" alt="VSCode Icon" class="programIcon">
         <div class="programInfo">
           <h3>Visual Studio Code</h3>
-          <p>Code editor redefined and optimized for building and debugging modern web and cloud applications.</p><br>
+          <p>Code editor redefined and optimized for building and debugging modern web and cloud applications.</p>
           <button id="download-vscode" class="downloadBtn">Download VSCode</button>
           <div class="progress-container" id="progress-vscode" style="display: none;">
             <progress id="progress-bar-vscode" value="0" max="100"></progress>
@@ -64,7 +62,7 @@
         <img src="icons/icon_github.svg" alt="GitHub Desktop Icon" class="programIcon">
         <div class="programInfo">
           <h3>GitHub Desktop</h3>
-          <p>Focus on what matters instead of fighting with Git. Whether you're new to Git or a seasoned user, GitHub Desktop simplifies your development workflow.</p><br>
+          <p>Focus on what matters instead of fighting with Git. Whether you're new to Git or a seasoned user, GitHub Desktop simplifies your development workflow.</p>
           <button id="download-github" class="downloadBtn">Download GitHub</button>
           <div class="progress-container" id="progress-github" style="display: none;">
             <progress id="progress-bar-github" value="0" max="100"></progress>
@@ -80,7 +78,7 @@
         <img src="icons/Quartus-Prime-.png" alt="Quartus Icon" class="programIcon">
         <div class="programInfo">
           <h3>Intel Quartus</h3>
-          <p>A fast, secure, and free web browser built for the modern web.</p><br>
+          <p>A fast, secure, and free web browser built for the modern web.</p>
           <button id="download-quartus" class="downloadBtn">Download Quartus</button>
           <div class="progress-container" id="progress-quartus" style="display: none;">
             <progress id="progress-bar-quartus" value="0" max="100"></progress>
@@ -91,14 +89,13 @@
           </div>
         </div>
       </div>
-
+      
       <div class="card">
-        <img src="icons/icon_sapho.ico" alt="SAPHO Icon" class="programIcon">
+        <img src="icons/Sapho1.jpg" alt="SAPHO Icon" class="programIcon">
         <div class="programInfo">
           <h3>SAPHO</h3>
-          <p>SAPHO is a platform for building enterprise applications with micro apps that aggregate data from multiple sources into a unified interface.</p><br>
+          <p>A fast, secure, and free web browser built for the modern web.</p>
           <button id="download-sapho" class="downloadBtn">Download SAPHO</button>
-          <!-- Progresso do SAPHO -->
           <div class="progress-container" id="progress-sapho" style="display: none;">
             <progress id="progress-bar-sapho" value="0" max="100"></progress>
             <span id="speed-sapho">0 Mbps</span>
@@ -108,41 +105,13 @@
           </div>
         </div>
       </div>
-      
-    </section>
-    
-    <section id="newsSection">
-      <h2>News</h2>
-      <div class="newsContainer">
-        <div class="newsItem">
-          <h3>New Version Released!</h3>
-          <p>Check out the latest updates and features in NIPSCERN Director.</p>
-        </div>
-      </div>
     </section>
   </main>
   
   <footer>
-    <button id="aboutBtn">About</button>
-    <button id="settingsBtn">Settings</button>
+    <p>&copy; 2023 NIPSCERN. All rights reserved.</p>
   </footer>
-
-<!-- No final do seu body -->
-<div class="aboutMenu">
-  <div class="aboutMenu-content">
-    <span class="close">&times;</span>
-    <h2>About Torus - NIPSCERN Director</h2>
-    <p>
-      Welcome to Torus - NIPSCERN Director, a download manager for NIPSCERN laboratory.
-      This application helps manage installed and available programs efficiently.
-    </p>
-    <p>
-      For more information, please contact us at support@nipscern.edu.
-    </p>
-  </div>
-</div>
   
   <script src="js/renderer.js"></script>
-  <script src="js/about.js"></script>
 </body>
 </html>
