@@ -1,7 +1,6 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
-const { download } = require('electron-dl');
 const downloadManager = require('electron-download-manager');
 
 // Configurar o gerenciador de downloads
